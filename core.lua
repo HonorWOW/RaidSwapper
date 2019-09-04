@@ -11,6 +11,7 @@ In and Out can be swapped, and any number of names under each is valid.
 
 TODO: Reduce number of redundant GetRaidRosterInfo calls by caching information.
 TODO: Perform swaps we can, THEN try moving. Requires less space.
+TODO: Add support for popup after encounter success + allow for pre-defining swaps after all fights so they don't need to be entered each time.
 
 ]]
 local _, RaidSwapper = ...
