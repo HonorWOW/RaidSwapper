@@ -15,6 +15,7 @@ TODO: Add support for popup after encounter success + allow for pre-defining swa
 
 ]]
 local _, RaidSwapper = ...
+local notFoundPlayers = {}
 
 RaidSwapper = LibStub("AceAddon-3.0"):NewAddon(RaidSwapper, "RaidSwapper", "AceConsole-3.0", "AceEvent-3.0")
 
@@ -69,6 +70,12 @@ function RaidSwapper:Swap()
 		if (#playersToAdd > 0) then
 		    local addedPlayers = table.concat(playersToAdd, ", ")
 		    SendChatMessage("Players (" .. addedPlayers .. ") have been swapped in.", "RAID")
+		end
+
+		if (#notFoundPlayers > 0) then
+		    local missingPlayers = table.concat(notFoundPlayers, ", ")
+		    SendChatMessage("Players (" .. missingPlayers .. ") could not be found in the raid.", "RAID")
+			notFoundPlayers = {}
 		end
    end
 end
@@ -160,6 +167,7 @@ function RaidSwapper:FindPlayer(player)
 	    end
 	end
 	print("|CFFFF0000[RaidSwapper]: Could not find player: " .. player)
+	notFoundPlayers[#notFoundPlayers + 1] = player
 end
 
 -- Find an open subgroup to move a player to, favoring the last groups (e.g to remove a player from the first four)
