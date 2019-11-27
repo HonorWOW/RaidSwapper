@@ -97,7 +97,7 @@ end
 function RaidSwapper:ParseInput(playersToRemove, playersToAdd, raid)
     local input = RaidSwapFrameScrollText:GetText()
     local removingPlayers = true
-    local parsedInput = string.gmatch(input, "[^%s]+")
+    local parsedInput = string.gmatch(input, "[^\r\n]+")
     for entry in parsedInput do
         if (entry == "Out:") then
             removingPlayers = true
